@@ -1,0 +1,13 @@
+entity: Person
+items:
+  person{1..10}:
+    firstName: '{{name.firstName}}'
+    lastName: '{{name.lastName}}'
+    email: '{{internet.email}}'
+    phone: '{{phone.phoneNumber}}'
+    address: '{{address.streetAddress}}'
+    street: '{{address.streetName}}'
+    suburb: '{{address.county}}'
+    state: '{{address.state}}'
+    postcode: '{{address.zipCode}}'
+    country: '{{address.country}}'

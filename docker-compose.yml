@@ -1,0 +1,52 @@
+version: '3.3'
+
+services:
+  postgres-db:
+    container_name: postgres-db
+    image: postgres:latest
+    ports:
+      - '5432:5432'
+    volumes:
+      - data:/data/postgres
+    env_file:
+      - docker.env
+    networks:
+      - app
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: ./Dockerfile
+    restart: always
+    volumes:
+      - sock:/sock
+      - ./backend:/var/www
+    ports:
+      - 3000:3000
+    environment:
+      - POSTGRES_HOST=postgres-db
+    networks:
+      - app
+    depends_on:
+      - postgres-db
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ./Dockerfile
+    ports:
+      - 80:3005
+    volumes:
+      - sock:/sock
+    restart: always
+    networks:
+      - app
+    depends_on:
+      - backend
+
+volumes:
+  sock:
+  data:
+
+networks:
+  app:
