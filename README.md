@@ -6,7 +6,7 @@ Backend documentation [here](backend/README.md)
 
 Frontend documentation [here](frontend/README.md)
 
-Used ReactJs, NextJs, Postgres
+Used ReactJs, NestJs, Postgres
 
 ## How to run
 
